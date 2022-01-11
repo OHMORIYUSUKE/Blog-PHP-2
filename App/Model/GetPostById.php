@@ -21,12 +21,3 @@ class GetPostById
         return $items;
     }
 }
-?>
-
-<?php
-$obj = new GetPostById(11);
-$items = $obj->getPostById();
-foreach ($items as $item) : ?>
-    <p><?php echo $item['id']; ?></p>
-    <p><?php echo $item['title']; ?></p>
-<?php endforeach; ?>

@@ -15,12 +15,3 @@ class GetAllPost
         return $items;
     }
 }
-?>
-
-<?php
-$obj = new GetAllPost();
-$items = $obj->getAllPost();
-foreach ($items as $item) : ?>
-    <p><?php echo $item['id']; ?></p>
-    <p><?php echo $item['title']; ?></p>
-<?php endforeach; ?>
