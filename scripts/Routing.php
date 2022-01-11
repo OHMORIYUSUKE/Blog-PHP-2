@@ -54,11 +54,3 @@ function path_route(array $map, $method = null, $path = null)
     if (isset($codeMap[$code])) call_user_func($codeMap[$code], array($path));
     else echo $code;
 }
-function h($value, $encoding = 'UTF-8')
-{
-    return htmlspecialchars($value, ENT_QUOTES, $encoding);
-} // HTMlエスケープ出力用
-function eh($value, $encoding = 'UTF-8')
-{
-    echo h($value, $encoding);
-} // 同上

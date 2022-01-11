@@ -4,13 +4,13 @@ include "db/dbconnect.php";
 class GetAllPost
 {
 
-    function getAllPost()
+    public function getAllPost()
     {
         $con = new connect();
 
         $sql = "SELECT * FROM article ORDER BY created DESC";
 
-        $items = $con->NonePramSQL($sql);
+        $items = $con->SQL($sql, array());
 
         return $items;
     }

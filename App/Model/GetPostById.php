@@ -5,18 +5,18 @@ class GetPostById
 {
     private $id;
 
-    function __construct($id)
+    public function __construct(int $id)
     {
         $this->id = $id;
     }
 
-    function getPostById()
+    public function getPostById()
     {
         $con = new connect();
         $id = $this->id;
         $sql = "SELECT * FROM article WHERE id=:id";
 
-        $items = $con->PramSQL($sql, $id);
+        $items = $con->SQL($sql, array(':id' => $id));
 
         return $items;
     }
