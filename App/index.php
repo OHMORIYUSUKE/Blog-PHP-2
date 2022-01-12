@@ -20,15 +20,11 @@ path_route(array(
     // パラメータ付きのURLのルーティングの例です。
     array('GET', '/article/:id', function ($params) {
 ?>
-    <?php
-        include "Model/GetPostById.php";
 
-        $obj = new GetPostById($params['id']);
-        $items = $obj->getPostById();
-        foreach ($items as $item) : ?>
-        <p><?php echo $item['id']; ?></p>
-        <p><?php echo $item['title']; ?></p>
-    <?php endforeach; ?>
+<?php
+include "View/View.php";
+?>
+
 <?php
     }),
     // パラメータ付きのURLのルーティングの例です。

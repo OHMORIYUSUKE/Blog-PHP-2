@@ -1,5 +1,13 @@
 <?php
 include "utils/InsertTagHead.php";
+        include "../Model/GetPostById.php";
+
+        $obj = new GetPostById(19);
+        $items = $obj->getPostById();
+        foreach ($items as $item) :
+             $text = $item['text']; 
+             $title = $item['title']; 
+        endforeach; 
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -34,7 +42,10 @@ include "utils/InsertTagHead.php";
     </nav>
     <article>
         <section>
-            <div class="articleView">## AAAA</div>
+            <h1><?php echo $title; ?></h1>
+</section>
+        <section>
+            <div class="articleView"><?php echo $text; ?></div>
         </section>
     </article>
     <aside>
