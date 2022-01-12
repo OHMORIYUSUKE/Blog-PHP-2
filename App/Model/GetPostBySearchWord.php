@@ -10,7 +10,7 @@ class GetPostBySearchWord
         $this->word = $word;
     }
 
-    public function getPostBySearchWord()
+    public function getPostBySearchWord(): PDOStatement
     {
         $con = new connect();
         $word = $this->word;
@@ -21,20 +21,20 @@ class GetPostBySearchWord
 
         $sql = "SELECT * FROM article WHERE title LIKE :title ORDER BY created DESC";
 
-        $items = $con->SQL($sql, array(':title' => $word));
+        $items = $con->SQL($sql, array([':title', $word, PDO::PARAM_STR]));
 
         return $items;
     }
 
-    private function url2string(string $word)
+    private function url2string(string $word): string
     {
         return urldecode($word);
     }
-    private function bMatch(string $word)
+    private function bMatch(string $word): string
     {
         return $word . '%';
     }
-    private function pMatch(string $word)
+    private function pMatch(string $word): string
     {
         return '%' . $word;
     }

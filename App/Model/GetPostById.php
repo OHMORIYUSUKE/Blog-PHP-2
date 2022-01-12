@@ -10,13 +10,13 @@ class GetPostById
         $this->id = $id;
     }
 
-    public function getPostById()
+    public function getPostById(): PDOStatement
     {
         $con = new connect();
         $id = $this->id;
         $sql = "SELECT * FROM article WHERE id=:id";
 
-        $items = $con->SQL($sql, array(':id' => $id));
+        $items = $con->SQL($sql, array([':id', $id, PDO::PARAM_INT]));
 
         return $items;
     }

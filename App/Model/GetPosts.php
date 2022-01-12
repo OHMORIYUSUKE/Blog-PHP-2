@@ -10,13 +10,13 @@ class GetPosts
         $this->stat = $start;
     }
 
-    public function getPosts()
+    public function getPosts(): PDOStatement
     {
         $con = new connect();
         $start = $this->stat;
         $sql = "SELECT * FROM article ORDER BY created DESC LIMIT :num,6";
 
-        $items = $con->FSQL($sql, array(['key' => ':num', 'data' => $start, 'type' => PDO::PARAM_INT]));
+        $items = $con->SQL($sql, array([':num', $start, PDO::PARAM_INT]));
 
         return $items;
     }
