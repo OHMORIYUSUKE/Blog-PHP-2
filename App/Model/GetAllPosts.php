@@ -9,11 +9,8 @@ class GetAllPost
     public function getAllPost(): PDOStatement
     {
         $con = new connect();
-
         $sql = "SELECT * FROM article ORDER BY created DESC";
-
         $items = $con->SQL($sql);
-
         return $items;
     }
 }

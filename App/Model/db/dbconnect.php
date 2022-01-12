@@ -29,11 +29,8 @@ class connect
         $obj = $this->pdo();
         $stmt = $obj->prepare($sql);
 
-        if ($param == null) {
-            $stmt = $this->doNoneParamSQL($stmt);
-            return $stmt;
-        }
-        $stmt = $this->doInParamSQL($stmt, $param);
+        $stmt = $param ? $this->doInParamSQL($stmt, $param) : $this->doNoneParamSQL($stmt);
+
         return $stmt;
     }
 
