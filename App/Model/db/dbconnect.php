@@ -1,21 +1,23 @@
 <?php
 class connect
 {
-    //定数の宣言
-    const DB_NAME = 'blog';
-    const HOST = '127.0.0.1';
-    const UTF = 'utf8';
-    const USER = 'root';
-    const PASS = '';
+    public function __construct()
+    {
+        $this->DB_NAME = "blog";
+        $this->HOST = "127.0.0.1";
+        $this->UTF = "utf8";
+        $this->USER = "root";
+        $this->PASS = "";
+    }
     //データベースに接続する関数
     public function pdo(): PDO
     {
-        /*phpのバージョンが5.3.6よりも古い場合はcharset=".self::UTFが必要無くなり、array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES '.SELF::UTF')が必要になり、5.3.6以上の場合は必要ないがcharset=".self::UTFは必要になる。*/
-        $dsn = "mysql:dbname=" . self::DB_NAME . ";host=" . self::HOST . ";charset=" . self::UTF;
-        $user = self::USER;
-        $pass = self::PASS;
+        /*phpのバージョンが5.3.6よりも古い場合はcharset=".$this->UTFが必要無くなり、array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES '.$this->UTF')が必要になり、5.3.6以上の場合は必要ないがcharset=".$this->UTFは必要になる。*/
+        $dsn = "mysql:dbname=" . $this->DB_NAME . ";host=" . $this->HOST . ";charset=" . $this->UTF;
+        $user = $this->USER;
+        $pass = $this->PASS;
         try {
-            $pdo = new PDO($dsn, $user, $pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . SELF::UTF));
+            $pdo = new PDO($dsn, $user, $pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . $this->UTF));
         } catch (Exception $e) {
             echo 'error' . $e->getMesseage;
             die();
