@@ -31,4 +31,16 @@ class connect
         $stmt->execute($param);
         return $stmt;
     }
+    public function FSQL(string $sql, array $param)
+    {
+        $obj = $this->pdo();
+        $stmt = $obj->prepare($sql);
+        //
+        for ($i = 0; $i < count($param); $i++) {
+            $stmt->bindValue($param[$i]['key'], $param[$i]['data'], $param[$i]['type']);
+        }
+        $stmt->execute();
+        //
+        return $stmt;
+    }
 }
