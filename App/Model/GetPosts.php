@@ -3,11 +3,13 @@ include "db/dbconnect.php";
 
 class GetPosts
 {
-    private $start;
+    private int $start;
+    private int $postCount;
 
     public function __construct(int $start)
     {
         $this->stat = $start;
+        $this->postCount = 6;
     }
 
     public function getPosts(): PDOStatement
@@ -16,7 +18,7 @@ class GetPosts
 
         $start = $this->stat;
 
-        $sql = "SELECT * FROM article ORDER BY created DESC LIMIT :num,6";
+        $sql = "SELECT * FROM article ORDER BY created DESC LIMIT :num, ".$this->postCount;
         $items = $con->SQL($sql, array([':num', $start, PDO::PARAM_INT]));
         return $items;
     }

@@ -21,9 +21,9 @@ path_route(array(
     array('GET', '/article/:id', function ($params) {
 ?>
 
-<?php
-include "View/View.php";
-?>
+    <?php
+        print($params['id']);
+    ?>
 
 <?php
     }),

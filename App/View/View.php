@@ -1,20 +1,19 @@
 <?php
 include "utils/InsertTagHead.php";
-        include "../Model/GetPostById.php";
+include "utils/InsertHeaderAndNavbar.php";
+include "../Model/GetPostById.php";
 
-        $obj = new GetPostById(19);
-        $items = $obj->getPostById();
-        foreach ($items as $item) :
-             $text = $item['text']; 
-             $title = $item['title']; 
-        endforeach; 
+$obj = new GetPostById(20);
+$items = $obj->getPostById();
+$post = $items->fetch();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <?php
     // CDNなどをinsertする
-    $obj = new InsertTagHead("Topページ");
+    $obj = new InsertTagHead($post['title']);
     $tagUTF8 = $obj->insertUTF8();
     $tagTitle = $obj->insertTitle();
     $tagCDN4MD = $obj->insertTagCDN4MD();
@@ -26,26 +25,17 @@ include "utils/InsertTagHead.php";
 </head>
 
 <body>
-    <header>
-        <h1>HTML5 【 レイアウト 】</h1>
-    </header>
-    <nav>
-        <h1>グローバルナビゲーション</h1>
-        <ul>
-            <li><a href="#">HOME</a></li>
-            <li><a href="#">MENU1</a></li>
-            <li><a href="#">MENU2</a></li>
-            <li><a href="#">MENU3</a></li>
-            <li><a href="#">SITE MAP</a></li>
-            <li><a href="#">ABOUT</a></li>
-        </ul>
-    </nav>
+<?php
+    // Header,Navbarをinsertする
+    $obj = new InsertHeaderAndNavbar();
+    print($obj->insertHeaderAndNavbar());
+    ?>
     <article>
         <section>
-            <h1><?php echo $title; ?></h1>
-</section>
+            <h1><?php print($post['title']); ?></h1>
+        </section>
         <section>
-            <div class="articleView"><?php echo $text; ?></div>
+            <div class="articleView"><?php print($post['text']); ?></div>
         </section>
     </article>
     <aside>

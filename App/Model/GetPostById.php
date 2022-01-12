@@ -3,7 +3,7 @@ include "db/dbconnect.php";
 
 class GetPostById
 {
-    private $id;
+    private int $id;
 
     public function __construct(int $id)
     {

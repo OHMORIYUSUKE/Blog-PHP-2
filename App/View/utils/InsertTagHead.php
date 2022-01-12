@@ -2,7 +2,7 @@
 
 class InsertTagHead
 {
-    private $title;
+    private string $title;
     function __construct(string $title)
     {
         $this->title = $title;
