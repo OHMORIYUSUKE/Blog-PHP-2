@@ -16,10 +16,8 @@ class GetPosts
     {
         $con = new Connect();
 
-        $start = $this->stat;
-
-        $sql = "SELECT * FROM article ORDER BY created DESC LIMIT :num, ".$this->postCount;
-        $items = $con->SQL($sql, array([':num', $start, PDO::PARAM_INT]));
+        $sql = "SELECT * FROM article ORDER BY created DESC LIMIT :num, :postCount";
+        $items = $con->SQL($sql, array([':num', $this->stat, PDO::PARAM_INT], [':postCount', $this->postCount, PDO::PARAM_INT]));
         return $items;
     }
 }

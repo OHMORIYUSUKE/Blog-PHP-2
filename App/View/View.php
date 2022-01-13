@@ -20,7 +20,7 @@ $post = $items->fetch();
 </head>
 
 <body>
-<?php
+    <?php
     // Header,Navbarをinsertする
     $obj = new HeaderAndNavbar();
     print($obj->headerAndNavbar());

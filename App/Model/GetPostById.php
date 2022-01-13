@@ -14,10 +14,8 @@ class GetPostById
     {
         $con = new Connect();
 
-        $id = $this->id;
-
         $sql = "SELECT * FROM article WHERE id=:id";
-        $items = $con->SQL($sql, array([':id', $id, PDO::PARAM_INT]));
+        $items = $con->SQL($sql, array([':id', $this->id, PDO::PARAM_INT]));
         return $items;
     }
 }

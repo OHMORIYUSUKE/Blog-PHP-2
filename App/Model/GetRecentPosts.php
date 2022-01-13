@@ -14,8 +14,8 @@ class GetRecentPosts
     {
         $con = new Connect();
 
-        $sql = "SELECT * FROM article ORDER BY created DESC LIMIT 0,".$this->postCount;
-        $items = $con->SQL($sql);
+        $sql = "SELECT * FROM article ORDER BY created DESC LIMIT 0, :postCount";
+        $items = $con->SQL($sql, array([':postCount', $this->postCount, PDO::PARAM_INT]));
         return $items;
     }
 }
