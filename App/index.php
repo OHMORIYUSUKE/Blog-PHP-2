@@ -1,8 +1,9 @@
 <?php
 //
-include "../scripts/Routing.php";
+include "../modules/Routing.php";
 //
-path_route(array(
+$obj = new Routing();
+$obj->path_route(array(
     // array(リクエストメソッド, パスのパターン, 対応関数(またはメソッドなど callable なもの)), という形で設定を与えます。
     array('GET', '/page/:pageNumber', function ($params) {
 ?>

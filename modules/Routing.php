@@ -1,11 +1,16 @@
 <?php
 // https://knooto.info/php-simple-routing/
-/**
+class Routing
+{
+    public function __construct()
+    {
+    }
+    /**
  * PATH_INFO の値を取得します。(PATH_INFO が無い場合、REQUEST_URI と SCRIPT_NAME をもとに PATH_INFO 相当の値を生成して返します)
  *
  * @return string PATH_INFO の値 (PATH_INFO が無い場合、PATH_INFO 相当の値)
  */
-function path_info()
+public function path_info()
 {
     if (isset($_SERVER['PATH_INFO'])) {
         return $_SERVER['PATH_INFO'];
@@ -24,10 +29,10 @@ function path_info()
  * @param string $path リクエストされたパス。指定しない場合は $_SERVER['PATH_INFO'] (または $_SERVER['PATH_INFO'] 相当) が使用されます。
  * @return void
  */
-function path_route(array $map, $method = null, $path = null)
+public function path_route(array $map, $method = null, $path = null)
 {
     $method = strtoupper(is_null($method) ? $_SERVER['REQUEST_METHOD'] : $method);
-    if (is_null($path)) $path = path_info();
+    if (is_null($path)) $path = $this->path_info();
 
     $code = '404';
     $codeMap = array();
@@ -53,4 +58,6 @@ function path_route(array $map, $method = null, $path = null)
     header("HTTP/1.1 {$code} {$statusMap[$code]}");
     if (isset($codeMap[$code])) call_user_func($codeMap[$code], array($path));
     else echo $code;
+}
+
 }

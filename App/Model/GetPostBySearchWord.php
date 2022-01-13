@@ -1,5 +1,5 @@
 <?php
-include "db/dbconnect.php";
+include "db/Connect.php";
 
 class GetPostBySearchWord
 {
@@ -12,7 +12,7 @@ class GetPostBySearchWord
 
     public function getPostBySearchWord(): PDOStatement
     {
-        $con = new connect();
+        $con = new Connect();
 
         $word = $this->word;
 

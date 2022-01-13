@@ -1,5 +1,5 @@
 <?php
-include "db/dbconnect.php";
+include "db/Connect.php";
 
 class GetPostById
 {
@@ -12,7 +12,7 @@ class GetPostById
 
     public function getPostById(): PDOStatement
     {
-        $con = new connect();
+        $con = new Connect();
 
         $id = $this->id;
 

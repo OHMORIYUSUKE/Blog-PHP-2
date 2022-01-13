@@ -1,6 +1,7 @@
 <?php
-include "utils/InsertTagHead.php";
-include "utils/InsertHeaderAndNavbar.php";
+include "Components/Head.php";
+include "Components/Footer.php";
+include "Components/HeaderAndNavbar.php";
 include "../Model/GetPosts.php";
 
 $obj = new GetPosts(0);
@@ -12,20 +13,16 @@ $items = $obj->getPosts();
 <head>
     <?php
     // CDNなどをinsertする
-    $obj = new InsertTagHead("Topページ");
-    $tagUTF8 = $obj->insertUTF8();
-    $tagTitle = $obj->insertTitle();
-    $tagJQ = $obj->insertTagJQuery();
-    $tagCSS = $obj->insertTagCSS();
-    echo $tagUTF8, $tagTitle, $tagJQ, $tagCSS;
+    $obj = new Head("トップページ");
+    echo $obj->utf8(), $obj->title(), $obj->cdn4md(), $obj->jquery(), $obj->tweet(), $obj->css()
     ?>
 </head>
 
 <body>
 <?php
     // Header,Navbarをinsertする
-    $obj = new InsertHeaderAndNavbar();
-    print($obj->insertHeaderAndNavbar());
+    $obj = new HeaderAndNavbar();
+    print($obj->headerAndNavbar());
     ?>
     <article>
         <?php foreach ($items as $item) : ?>
@@ -56,10 +53,11 @@ $items = $obj->getPosts();
             </ul>
         </section>
     </aside>
-    <footer>
-        Copyright ©HTML5 【 レイアウト 】 All Rights Reserved.
-    </footer>
-    <script src="js/index.js"></script>
+    <?php
+    $obj = new Footer();
+    print($obj->footer());
+    ?>
+    <script src="js/md2html.js"></script>
 </body>
 
 </html>

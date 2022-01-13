@@ -1,5 +1,5 @@
 <?php
-include "db/dbconnect.php";
+include "db/Connect.php";
 
 class GetPosts
 {
@@ -14,7 +14,7 @@ class GetPosts
 
     public function getPosts(): PDOStatement
     {
-        $con = new connect();
+        $con = new Connect();
 
         $start = $this->stat;
 

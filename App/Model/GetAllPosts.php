@@ -1,5 +1,5 @@
 <?php
-include "db/dbconnect.php";
+include "db/Connect.php";
 
 class GetAllPost
 {
@@ -8,7 +8,7 @@ class GetAllPost
     }
     public function getAllPost(): PDOStatement
     {
-        $con = new connect();
+        $con = new Connect();
         $sql = "SELECT * FROM article ORDER BY created DESC";
         $items = $con->SQL($sql);
         return $items;

@@ -1,6 +1,7 @@
 <?php
-include "utils/InsertTagHead.php";
-include "utils/InsertHeaderAndNavbar.php";
+include "Components/Head.php";
+include "Components/Footer.php";
+include "Components/HeaderAndNavbar.php";
 include "../Model/GetPostById.php";
 
 $obj = new GetPostById(20);
@@ -13,22 +14,16 @@ $post = $items->fetch();
 <head>
     <?php
     // CDNなどをinsertする
-    $obj = new InsertTagHead($post['title']);
-    $tagUTF8 = $obj->insertUTF8();
-    $tagTitle = $obj->insertTitle();
-    $tagCDN4MD = $obj->insertTagCDN4MD();
-    $tagJQ = $obj->insertTagJQuery();
-    $tagTweet = $obj->insertTagTweet();
-    $tagCSS = $obj->insertTagCSS();
-    echo $tagUTF8, $tagTitle, $tagCDN4MD, $tagTweet, $tagJQ, $tagCSS;
+    $obj = new Head($post['title']);
+    echo $obj->utf8(), $obj->title(), $obj->cdn4md(), $obj->jquery(), $obj->tweet(), $obj->css()
     ?>
 </head>
 
 <body>
 <?php
     // Header,Navbarをinsertする
-    $obj = new InsertHeaderAndNavbar();
-    print($obj->insertHeaderAndNavbar());
+    $obj = new HeaderAndNavbar();
+    print($obj->headerAndNavbar());
     ?>
     <article>
         <section>
@@ -60,10 +55,11 @@ $post = $items->fetch();
             </ul>
         </section>
     </aside>
-    <footer>
-        Copyright ©HTML5 【 レイアウト 】 All Rights Reserved.
-    </footer>
-    <script src="js/index.js"></script>
+    <?php
+    $obj = new Footer();
+    print($obj->footer());
+    ?>
+    <script src="js/md2html.js"></script>
 </body>
 
 </html>

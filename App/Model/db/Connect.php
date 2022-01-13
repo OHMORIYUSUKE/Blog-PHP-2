@@ -1,5 +1,5 @@
 <?php
-class connect
+class Connect
 {
     public function __construct()
     {

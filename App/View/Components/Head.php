@@ -1,6 +1,6 @@
 <?php
 
-class InsertTagHead
+class Head
 {
     private string $title;
     function __construct(string $title)
@@ -8,17 +8,17 @@ class InsertTagHead
         $this->title = $title;
     }
 
-    public function insertUTF8(): string
+    public function utf8(): string
     {
         $tag = '<meta charset="utf-8">';
         return $tag;
     }
-    public function insertTitle(): string
+    public function title(): string
     {
         $tag = "<title>{$this->title}</title>";
         return $tag;
     }
-    public function insertTagCDN4MD(): string
+    public function cdn4md(): string
     {
         $tags = <<<END
             <!-- ★マークダウン変換用 -->
@@ -33,7 +33,7 @@ class InsertTagHead
         return $tags;
     }
 
-    public function insertTagJQuery(): string
+    public function jquery(): string
     {
         $tag = <<<END
             <!-- jQuery-->
@@ -42,7 +42,7 @@ class InsertTagHead
         return $tag;
     }
 
-    public function insertTagTweet(): string
+    public function tweet(): string
     {
         $tag = <<<END
             <!-- twitterのツイートを貼る用のjs -->
@@ -51,12 +51,12 @@ class InsertTagHead
         return $tag;
     }
 
-    public function insertTagCSS(): string
+    public function css(): string
     {
         $tag = <<<END
             <!--レスポンシブ-->
             <meta name="viewport" content="width=device-width">
-            <link rel="stylesheet" type="text/css" href="css/index.css" media="all">
+            <link rel="stylesheet" type="text/css" href="css/main.css" media="all">
         END;
         return $tag;
     }

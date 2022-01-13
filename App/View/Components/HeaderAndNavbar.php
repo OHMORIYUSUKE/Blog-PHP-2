@@ -1,17 +1,30 @@
 <?php
 
-class InsertHeaderAndNavbar
+class HeaderAndNavbar
 {
     function __construct()
     {
     }
 
-    public function insertHeaderAndNavbar(): string
+    public function headerAndNavbar(): string
     {
-        $tags = <<<END
+        $tagHeader = $this->header();
+        $tagNavbar = $this->navbar();
+        $tag = $tagHeader ."\n".$tagNavbar;
+        return $tag;
+    }
+    private function header(): string
+    {
+        $tag = <<<END
             <header>
             <h1>うーたんのブログ</h1>
             </header>
+        END;
+        return $tag;
+    }
+    private function navbar(): string
+    {
+        $tag = <<<END
             <nav>
             <h1>グローバルナビゲーション</h1>
             <ul>
@@ -23,6 +36,6 @@ class InsertHeaderAndNavbar
             </ul>
             </nav>
         END;
-        return $tags;
+        return $tag;
     }
 }
