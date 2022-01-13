@@ -1,4 +1,5 @@
 <?php
+namespace App\View\Components;
 class Footer
 {
     function __construct()

@@ -1,4 +1,11 @@
 <?php
+
+namespace App\Model;
+
+use \PDO;
+use \PDOStatement;
+use \Exception;
+
 class Connect
 {
     public function __construct()

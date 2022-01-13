@@ -1,20 +1,38 @@
 <?php
-include "Components/Head.php";
-include "Components/Footer.php";
-include "Components/HeaderAndNavbar.php";
-include "../Model/GetPostById.php";
+
+namespace App\Model;
+
+require_once '../Model/GetPosts.php';
+require_once '../Model/GetPostById.php';
+
+use App\Model\GetPosts;
+use App\Model\GetPostById;
+
+$obj = new GetPosts(0);
+$posts = $obj->getPosts();
 
 $obj = new GetPostById(20);
 $items = $obj->getPostById();
 $post = $items->fetch();
+
+namespace App\View\Components;
+
+require_once 'Components/Head.php';
+require_once 'Components/Footer.php';
+require_once 'Components/HeaderAndNavbar.php';
+
+use App\View\Components\Head;
+use App\View\Components\Footer;
+use App\View\Components\HeaderAndNavbar;
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
     <?php
     // CDNなどをinsertする
-    $obj = new Head($post['title']);
+    $obj = new Head("トップページ");
     echo $obj->utf8(), $obj->title(), $obj->cdn4md(), $obj->jquery(), $obj->tweet(), $obj->css()
     ?>
 </head>
@@ -38,10 +56,9 @@ $post = $items->fetch();
             <h1>カテゴリー</h1>
             <ul>
                 <li><a href="#">カテゴリー1</a></li>
-                <li><a href="#">カテゴリー2</a></li>
-                <li><a href="#">カテゴリー3</a></li>
-                <li><a href="#">カテゴリー4</a></li>
-                <li><a href="#">カテゴリー5</a></li>
+                <?php foreach ($posts as $item) : ?>
+                    <li><?php echo $item['title']; ?></li>
+                <?php endforeach; ?>
             </ul>
         </section>
         <section>

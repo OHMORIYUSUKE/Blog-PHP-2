@@ -1,5 +1,5 @@
 <?php
-
+namespace App\View\Components;
 class HeaderAndNavbar
 {
     function __construct()

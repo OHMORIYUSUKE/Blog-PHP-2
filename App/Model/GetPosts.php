@@ -1,5 +1,12 @@
 <?php
-include "db/Connect.php";
+
+namespace App\Model;
+
+require_once 'db/Connect.php';
+
+use App\Model\Connect;
+use \PDO;
+use \PDOStatement;
 
 class GetPosts
 {
