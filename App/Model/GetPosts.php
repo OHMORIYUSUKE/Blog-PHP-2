@@ -2,8 +2,6 @@
 
 namespace App\Model;
 
-require_once 'db/Connect.php';
-
 use App\Model\Connect;
 use \PDO;
 use \PDOStatement;

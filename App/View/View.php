@@ -2,11 +2,22 @@
 
 namespace App\Model;
 
+namespace App\View\Components;
+
 require_once '../Model/GetPosts.php';
 require_once '../Model/GetPostById.php';
+require_once '../Model/db/Connect.php';
+
+require_once 'Components/Head.php';
+require_once 'Components/Footer.php';
+require_once 'Components/HeaderAndNavbar.php';
 
 use App\Model\GetPosts;
 use App\Model\GetPostById;
+
+use App\View\Components\Head;
+use App\View\Components\Footer;
+use App\View\Components\HeaderAndNavbar;
 
 $obj = new GetPosts(0);
 $posts = $obj->getPosts();
@@ -14,16 +25,6 @@ $posts = $obj->getPosts();
 $obj = new GetPostById(20);
 $items = $obj->getPostById();
 $post = $items->fetch();
-
-namespace App\View\Components;
-
-require_once 'Components/Head.php';
-require_once 'Components/Footer.php';
-require_once 'Components/HeaderAndNavbar.php';
-
-use App\View\Components\Head;
-use App\View\Components\Footer;
-use App\View\Components\HeaderAndNavbar;
 ?>
 
 <!DOCTYPE html>
