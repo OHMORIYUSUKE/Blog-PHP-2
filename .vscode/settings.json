@@ -1,17 +1,16 @@
 {
-    "javascript.updateImportsOnFileMove.enabled": "always",
-    "editor.codeActionsOnSave": null,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "notebook.cellToolbarLocation": {
-        "default": "right",
-        "jupyter-notebook": "left"
-    },
-    "editor.formatOnSave": true,
-    "[php]": {
-        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
-    }
-    "files.associations":
-    {
-        "*.tpl": "html",
-    }
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.codeActionsOnSave": null,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "editor.formatOnSave": true,
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  },
+  "files.associations": {
+    "*.tpl": "html"
+  }
 }
