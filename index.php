@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/modules/Routing.php";
 require_once __DIR__ . '/App/View/View.php';
+require_once __DIR__ . '/App/View/Top.php';
 
 use modules\Routing;
 
@@ -8,9 +9,12 @@ use modules\Routing;
 $obj = new Routing();
 $obj->path_route(array(
     // array(リクエストメソッド, パスのパターン, 対応関数(またはメソッドなど callable なもの)), という形で設定を与えます。
-    array('GET', '/page/:pageNumber', function ($params) {
+    array('GET', '/:id', function ($params) {
 ?>
-
+    <?php
+        $con = new Top($params['id']);
+        $con->top();
+    ?>
 <?php
     }),
     // パラメータ付きのURLのルーティングの例です。

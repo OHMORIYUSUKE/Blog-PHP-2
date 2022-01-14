@@ -37,7 +37,23 @@ class View
         $items = $obj->getPostById();
         $post = $items->fetch();
 
-        $obj = new Head($post['title'] . "｜うーたんのブログ");
+        if ($post === false) {
+            $postTitle = "記事がありません";
+            $postText = <<<END
+                ```
+                <p>その投稿は削除されたか、URLが間違えています。</p>
+                ∧＿∧
+                (´･ω･) みなさん、お茶が入りましたよ・・・。
+                ( つ旦O
+                と＿)＿) 旦旦旦旦旦旦旦旦旦旦旦旦旦旦旦旦旦旦旦旦
+                ```
+            END;
+        } else {
+            $postTitle = $post['title'];
+            $postText = $post['text'];
+        }
+
+        $obj = new Head($postTitle . "｜うーたんのブログ");
         $smarty->assign('head', $obj->utf8() . $obj->title() . $obj->cdn4md() . $obj->jquery() . $obj->tweet() . $obj->css());
 
         $obj = new HeaderAndNavbar();
@@ -46,8 +62,8 @@ class View
         $obj = new Footer();
         $smarty->assign('footer', $obj->footer());
 
-        $smarty->assign('blogTitle', $post['title']);
-        $smarty->assign('blogText', $post['text']);
+        $smarty->assign('blogTitle', $postTitle);
+        $smarty->assign('blogText', $postText);
 
         //js
         $js = file_get_contents(__DIR__ . '/js/md2html.js');
