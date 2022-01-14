@@ -4,13 +4,16 @@ namespace App\Model;
 
 namespace App\View\Components;
 
-require_once '../Model/GetPosts.php';
-require_once '../Model/GetPostById.php';
-require_once '../Model/db/Connect.php';
+namespace App\View;
+
 
 require_once 'Components/Head.php';
 require_once 'Components/Footer.php';
 require_once 'Components/HeaderAndNavbar.php';
+
+require_once __DIR__ . '/../Model/GetPosts.php';
+require_once __DIR__ . '/../Model/GetPostById.php';
+require_once __DIR__ . '/../Model/db/Connect.php';
 
 use App\Model\GetPosts;
 use App\Model\GetPostById;
@@ -22,9 +25,27 @@ use App\View\Components\HeaderAndNavbar;
 $obj = new GetPosts(0);
 $posts = $obj->getPosts();
 
-$obj = new GetPostById(20);
+
+
+class View
+{
+    private int $id;
+
+    public function __construct(int $id)
+    {
+        $this->id = $id;
+    }
+
+    public function view()
+    {
+        $obj = new GetPostById($this->id);
 $items = $obj->getPostById();
 $post = $items->fetch();
+return $post;
+    }
+}
+// $obj = new View(20);
+// $post = $obj->view();
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +98,24 @@ $post = $items->fetch();
     $obj = new Footer();
     print($obj->footer());
     ?>
-    <script src="js/md2html.js"></script>
+    <?php
+    $js = file_get_contents(__DIR__ . '/js/md2html.js');
+    if ($js === false) {
+        throw new \RuntimeException('file not found.');
+    }
+    print("<script>");
+    print($js);
+    print("</script>");
+    ?>
+    <?php
+    $js = file_get_contents(__DIR__ . '/css/main.css');
+    if ($js === false) {
+        throw new \RuntimeException('file not found.');
+    }
+    print("<style>");
+    print($js);
+    print("</style>");
+    ?>
 </body>
 
 </html>

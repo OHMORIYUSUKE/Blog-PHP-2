@@ -56,7 +56,6 @@ class Head
         $tag = <<<END
             <!--レスポンシブ-->
             <meta name="viewport" content="width=device-width">
-            <link rel="stylesheet" type="text/css" href="css/main.css" media="all">
         END;
         return $tag;
     }
