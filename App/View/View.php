@@ -1,105 +1,71 @@
 <?php
 
-namespace App\Model;
+require_once __DIR__ . '/../../App/Model/GetPostById.php';
+require_once __DIR__ . '/../../App/Model/db/Connect.php';
 
-namespace App\View\Components;
+require_once __DIR__ . '/Components/Head.php';
+require_once __DIR__ . '/Components/Footer.php';
+require_once __DIR__ . '/Components/HeaderAndNavbar.php';
 
-namespace App\View;
-
-
-require_once 'Components/Head.php';
-require_once 'Components/Footer.php';
-require_once 'Components/HeaderAndNavbar.php';
-
-require_once __DIR__ . '/../Model/GetPosts.php';
-require_once __DIR__ . '/../Model/GetPostById.php';
-require_once __DIR__ . '/../Model/db/Connect.php';
-
-use App\Model\GetPosts;
 use App\Model\GetPostById;
-
 use App\View\Components\Head;
 use App\View\Components\Footer;
 use App\View\Components\HeaderAndNavbar;
 
+require_once __DIR__ . "/../../modules/templateEngine/Smarty.class.php";
 
-$obj = new GetPosts(0);
-$posts = $obj->getPosts();
 
-$obj = new GetPostById(20);
-$items = $obj->getPostById();
-$post = $items->fetch();
+class View
+{
+    private int $id;
 
-?>
-
-<!DOCTYPE html>
-<html lang="ja">
-
-<head>
-    <?php
-    // CDNなどをinsertする
-    $obj = new Head("トップページ");
-    echo $obj->utf8(), $obj->title(), $obj->cdn4md(), $obj->jquery(), $obj->tweet(), $obj->css()
-    ?>
-</head>
-
-<body>
-    <?php
-    // Header,Navbarをinsertする
-    $obj = new HeaderAndNavbar();
-    print($obj->headerAndNavbar());
-    ?>
-    <article>
-        <section>
-            <h1><?php print($post['title']); ?></h1>
-        </section>
-        <section>
-            <div class="articleView"><?php print($post['text']); ?></div>
-        </section>
-    </article>
-    <aside>
-        <section>
-            <h1>カテゴリー</h1>
-            <ul>
-                <li><a href="#">カテゴリー1</a></li>
-                <?php foreach ($posts as $item) : ?>
-                    <li><?php echo $item['title']; ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </section>
-        <section>
-            <h1>アーカイブ</h1>
-            <ul>
-                <li><a href="#">アーカイブ1</a></li>
-                <li><a href="#">アーカイブ2</a></li>
-                <li><a href="#">アーカイブ3</a></li>
-                <li><a href="#">アーカイブ4</a></li>
-                <li><a href="#">アーカイブ5</a></li>
-            </ul>
-        </section>
-    </aside>
-    <?php
-    $obj = new Footer();
-    print($obj->footer());
-    ?>
-    <?php
-    $js = file_get_contents(__DIR__ . '/js/md2html.js');
-    if ($js === false) {
-        throw new \RuntimeException('file not found.');
+    public function __construct(int $id)
+    {
+        $this->id = $id;
     }
-    print("<script>");
-    print($js);
-    print("</script>");
-    ?>
-    <?php
-    $js = file_get_contents(__DIR__ . '/css/main.css');
-    if ($js === false) {
-        throw new \RuntimeException('file not found.');
-    }
-    print("<style>");
-    print($js);
-    print("</style>");
-    ?>
-</body>
 
-</html>
+    public function view(): void
+    {
+        $smarty = new Smarty();
+
+        $smarty->template_dir = __DIR__ . '/Templates/';
+        $smarty->compile_dir  = __DIR__ . '/Templates/templates_c/';
+        // $smarty->config_dir   = 'd:/smartysample/hello/configs/';
+        // $smarty->cache_dir    = 'd:/smartysample/hello/cache/';
+
+        $obj = new GetPostById($this->id);
+        $items = $obj->getPostById();
+        $post = $items->fetch();
+
+        $obj = new Head($post['title'] . "｜うーたんのブログ");
+        $smarty->assign('head', $obj->utf8() . $obj->title() . $obj->cdn4md() . $obj->jquery() . $obj->tweet() . $obj->css());
+
+        $obj = new HeaderAndNavbar();
+        $smarty->assign('headerAndNavbar', $obj->headerAndNavbar());
+
+        $obj = new Footer();
+        $smarty->assign('footer', $obj->footer());
+
+        $smarty->assign('blogTitle', $post['title']);
+        $smarty->assign('blogText', $post['text']);
+
+        //js
+        $js = file_get_contents(__DIR__ . '/js/md2html.js');
+        if ($js === false) {
+            throw new \RuntimeException('file not found.');
+        }
+        $js = '<script>' . $js . '</script>';
+        $smarty->assign('js', $js);
+
+        //css
+        $css = file_get_contents(__DIR__ . '/css/main.css');
+        if ($css === false) {
+            throw new \RuntimeException('file not found.');
+        }
+        $css = '<style>' . $css . '</style>';
+        $smarty->assign('css', $css);
+
+        $smarty->display('View.tpl');
+        return;
+    }
+}
