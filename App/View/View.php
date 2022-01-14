@@ -22,30 +22,14 @@ use App\View\Components\Head;
 use App\View\Components\Footer;
 use App\View\Components\HeaderAndNavbar;
 
+
 $obj = new GetPosts(0);
 $posts = $obj->getPosts();
 
-
-
-class View
-{
-    private int $id;
-
-    public function __construct(int $id)
-    {
-        $this->id = $id;
-    }
-
-    public function view()
-    {
-        $obj = new GetPostById($this->id);
+$obj = new GetPostById(20);
 $items = $obj->getPostById();
 $post = $items->fetch();
-return $post;
-    }
-}
-// $obj = new View(20);
-// $post = $obj->view();
+
 ?>
 
 <!DOCTYPE html>

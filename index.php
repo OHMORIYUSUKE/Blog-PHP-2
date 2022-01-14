@@ -1,9 +1,8 @@
 <?php
-//
-namespace App\View;
-use App\View\View;
-include __DIR__ . "/modules/Routing.php";
-//
+require_once __DIR__ . "/modules/Routing.php";
+
+use modules\Routing;
+
 $obj = new Routing();
 $obj->path_route(array(
     // array(リクエストメソッド, パスのパターン, 対応関数(またはメソッドなど callable なもの)), という形で設定を与えます。
@@ -18,8 +17,6 @@ $obj->path_route(array(
 
     <?php
         include __DIR__ . "/App/View/View.php";
-        $obj = new View($params['id']);
-$post = $obj->view();
     ?>
 
 <?php
