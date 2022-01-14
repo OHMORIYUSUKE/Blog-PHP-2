@@ -28,13 +28,12 @@ $obj->path_route(array(
 ?>
 
     <?php
-        //include __DIR__ . "/App/View/View.php";
-        require_once('Smarty.class.php');
+        require_once __DIR__ . "/modules/templateEngine/Smarty.class.php";
 
         $smarty = new Smarty();
 
-        $smarty->template_dir = 'App/View/Templates/';
-        // $smarty->compile_dir  = 'd:/smartysample/hello/templates_c/';
+        $smarty->template_dir = __DIR__ . '/App/View/Templates/';
+        $smarty->compile_dir  = __DIR__ . '/App/View/Templates/templates_c/';
         // $smarty->config_dir   = 'd:/smartysample/hello/configs/';
         // $smarty->cache_dir    = 'd:/smartysample/hello/cache/';
 
