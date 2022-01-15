@@ -39,8 +39,8 @@ class Top
     {
         $smarty = new Smarty();
 
-        $smarty->template_dir = __DIR__ . '/Templates/';
-        $smarty->compile_dir  = __DIR__ . '/Templates/templates_c/';
+        $smarty->template_dir = __DIR__ . '/Templates';
+        $smarty->compile_dir  = __DIR__ . '/Templates/templates_c';
         // $smarty->config_dir   = 'd:/smartysample/hello/configs/';
         // $smarty->cache_dir    = 'd:/smartysample/hello/cache/';
 
