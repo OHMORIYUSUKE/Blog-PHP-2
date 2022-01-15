@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  php:
+    build: ./php
+    volumes:
+      - ./php/html:/var/www/html
+      - ./sql:/user_sql
+    ports:
+      - 80:80
+    container_name: blog_php_container
+
+  mysql:
+    build: ./mysql
+    volumes:
+      - ./mysql/save_data:/var/lib/mysql #データの永続化
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=blog
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test
+    container_name: blog_mysql_container
+
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+    restart: always
+    container_name: blog_phpmyadmin_container
+    ports:
+      - "3031:80"

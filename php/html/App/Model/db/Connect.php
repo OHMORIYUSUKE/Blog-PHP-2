@@ -11,10 +11,10 @@ class Connect
     public function __construct()
     {
         $this->DB_NAME = "blog";
-        $this->HOST = "127.0.0.1";
+        $this->HOST = "mysql";
         $this->UTF = "utf8";
         $this->USER = "root";
-        $this->PASS = "";
+        $this->PASS = "root";
     }
     //データベースに接続する関数
     public function pdo(): PDO

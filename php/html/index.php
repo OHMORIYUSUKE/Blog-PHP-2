@@ -8,6 +8,19 @@ use modules\Routing;
 
 $obj = new Routing();
 $obj->path_route(array(
+    array('GET', '/', function ($params) {
+?>
+    <?php 
+    // http://example.com/0 にリダイレクト
+    $url = 'http://' . $_SERVER["HTTP_HOST"] . '/1';
+    echo <<<END
+        <script language="javascript" type="text/javascript">
+        window.location = '{$url}';
+        </script>
+    END;
+    ?>
+<?php
+    }),
     // array(リクエストメソッド, パスのパターン, 対応関数(またはメソッドなど callable なもの)), という形で設定を与えます。
     array('GET', '/:id', function ($params) {
 ?>
