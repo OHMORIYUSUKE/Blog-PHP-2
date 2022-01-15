@@ -16,7 +16,7 @@
           <ul class="pagination">
             {if $page > 1}
             <li class="page-item">
-              &laquo;<a href="/html/Blog-PHP-2/{$page - 1}"><span aria-hidden="true">前のページへ</span></a>
+              &laquo;<a href="/{$page - 1}"><span aria-hidden="true">前のページへ</span></a>
             </li>
             {else}
             <li class="page-item">
@@ -28,7 +28,7 @@
               </li>
             {if $page < $maxPage}
             <li class="page-item">
-              <a href="/html/Blog-PHP-2/{$page + 1}"><span aria-hidden="true">次のページへ</span></a>&raquo;
+              <a href="/{$page + 1}"><span aria-hidden="true">次のページへ</span></a>&raquo;
             </li>
             {else}
             <li class="page-item">
