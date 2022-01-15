@@ -12,31 +12,33 @@
         <a href="article/{$post.id}"><h1>{$post.title}</h1></a>
       </section>
       {/foreach}
-        <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            {if $page > 1}
-            <li class="page-item">
-              &laquo;<a href="/{$page - 1}"><span aria-hidden="true">前のページへ</span></a>
-            </li>
-            {else}
-            <li class="page-item">
-              <span aria-hidden="true">　　　　　　</span>
-            </li>
-            {/if}
-              <li class="page-item">
-                {$page} / {$maxPage}
-              </li>
-            {if $page < $maxPage}
-            <li class="page-item">
-              <a href="/{$page + 1}"><span aria-hidden="true">次のページへ</span></a>&raquo;
-            </li>
-            {else}
-            <li class="page-item">
-              <span aria-hidden="true">　　　　　　</span>
-            </li>
-            {/if}
-          </ul>
-        </nav>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          {if $page > 1}
+          <li class="page-item">
+            &laquo;<a href="/{$page - 1}"
+              ><span aria-hidden="true">前のページへ</span></a
+            >
+          </li>
+          {else}
+          <li class="page-item">
+            <span aria-hidden="true">　　　　　　</span>
+          </li>
+          {/if}
+          <li class="page-item">{$page} / {$maxPage}</li>
+          {if $page < $maxPage}
+          <li class="page-item">
+            <a href="/{$page + 1}"
+              ><span aria-hidden="true">次のページへ</span></a
+            >&raquo;
+          </li>
+          {else}
+          <li class="page-item">
+            <span aria-hidden="true">　　　　　　</span>
+          </li>
+          {/if}
+        </ul>
+      </nav>
     </article>
     <aside>
       <section>
