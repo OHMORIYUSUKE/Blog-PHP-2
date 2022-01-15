@@ -28,7 +28,7 @@ class HeaderAndNavbar
             <nav>
             <h1>グローバルナビゲーション</h1>
             <ul>
-            <li><a href="/html/Blog-PHP-2/0">🏡 HOME</a></li>
+            <li><a href="/html/Blog-PHP-2/1">🏡 HOME</a></li>
             <li><a href="#">🔍 Search</a></li>
             <li><a href="#">🧑 ABOUT</a></li>
             <li><a href="#">📰 Feed</a></li>
