@@ -19,6 +19,7 @@ services:
       - MYSQL_DATABASE=blog
       - MYSQL_USER=test
       - MYSQL_PASSWORD=test
+      - MYSQL_ROOT_HOST=%
     container_name: blog_mysql_container
 
   phpmyadmin:
