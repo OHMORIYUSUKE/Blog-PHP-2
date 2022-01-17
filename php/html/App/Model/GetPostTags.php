@@ -1,5 +1,9 @@
 <?php
-include "db/Connect.php";
+namespace App\Model;
+
+use App\Model\Connect;
+use \PDO;
+use \PDOStatement;
 
 class GetPostTags
 {

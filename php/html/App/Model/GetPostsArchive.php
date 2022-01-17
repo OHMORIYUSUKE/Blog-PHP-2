@@ -1,5 +1,9 @@
 <?php
-include "db/Connect.php";
+namespace App\Model;
+
+use App\Model\Connect;
+use \PDO;
+use \PDOStatement;
 
 class GetPostsArchive
 {
@@ -21,7 +25,7 @@ class GetPostsArchive
     {
         $createds = array();
         foreach ($items as $post) :
-            $date = new DateTime($post['created']);
+            $date = new \DateTime($post['created']);
             $created = $date->format('Y-m'); // 2014-08-01 23:01:05 -> Y/m
             $createds[] = $created;
         endforeach;

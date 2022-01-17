@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . '/../../App/Model/GetPostById.php';
-require_once __DIR__ . '/../../App/Model/db/Connect.php';
+require_once __DIR__ . '/../Model/GetPostById.php';
+require_once __DIR__ . '/../Model/db/Connect.php';
 
 require_once __DIR__ . '/Components/Head.php';
 require_once __DIR__ . '/Components/Footer.php';
@@ -28,8 +28,8 @@ class View
     {
         $smarty = new Smarty();
 
-        $smarty->template_dir = __DIR__ . '/Templates/';
-        $smarty->compile_dir  = __DIR__ . '/Templates/templates_c/';
+        $smarty->template_dir = __DIR__ . '/Templates';
+        $smarty->compile_dir  = __DIR__ . '/Templates/templates_c';
         // $smarty->config_dir   = 'd:/smartysample/hello/configs/';
         // $smarty->cache_dir    = 'd:/smartysample/hello/cache/';
 

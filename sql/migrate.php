@@ -18,6 +18,7 @@ if ($sql === false) {
 
 try {
     $db->query($sql);
+    print('SQLを正常に終了');
 } catch (PDOException $e) {
     print('SQL実行エラー:' . $e->getMessage());
 }

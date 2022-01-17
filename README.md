@@ -16,3 +16,10 @@ docker exec -it blog_php_container php migrate.php
 
 phpMyAdmin
 [http://localhost:3031](http://localhost:3031)
+
+---
+
+memo
+`docker system prune -a`
+`sudo docker-compose up --build`
+Shift + F5
