@@ -1,5 +1,7 @@
 <?php
 
+namespace App\View\Components\SideBarComponents;
+
 require_once __DIR__ . '/../../../Model/db/Connect.php';
 
 require_once __DIR__ . '/PopularPosts.php';
@@ -15,32 +17,30 @@ use App\View\Components\SideBarComponents\RecentPosts;
 //
 require_once __DIR__ . "/../../../../modules/templateEngine/Smarty.class.php";
 
-class Main{
-    private object $smarty;
-    public function __construct(object $smarty)
+class Main
+{
+    private \Smarty $smarty;
+    public function __construct(\Smarty $smarty)
     {
         $this->smarty = $smarty;
     }
-    public function main(): void{
+    public function main(): void
+    {
         $obj = new PopularPosts();
         $items = $obj->popularPosts();
+        $this->smarty->assign('popularPosts', $items);
 
         $obj = new PostsArchive();
         $items = $obj->postsArchive();
-        var_dump($items);
+        $this->smarty->assign('postsArchive', $items);
 
         $obj = new PostTags();
         $items = $obj->postTags();
-        var_dump($items);
+        $this->smarty->assign('postTags', $items);
 
         $obj = new RecentPosts();
         $items = $obj->recentPosts();
-        
-        $this->smarty->assign('hello', 'hello');
+        $this->smarty->assign('recentPosts', $items);
         return;
     }
 }
-
-$smarty = new Smarty();
-$obj = new Main($smarty);
-$obj->main();

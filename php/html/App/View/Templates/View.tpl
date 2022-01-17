@@ -16,23 +16,31 @@
     <aside>
       <section>
         <h1>カテゴリー</h1>
-        <ul>
-          <li><a href="#">カテゴリー1</a></li>
-          <li><a href="#">カテゴリー1</a></li>
-          <li><a href="#">カテゴリー1</a></li>
-          <li><a href="#">カテゴリー1</a></li>
-          <li><a href="#">カテゴリー1</a></li>
-        </ul>
+        <hr />
+        {foreach from=$postTags item=post}
+        <a href="/tag/{$post}">#{$post}</a>
+        {/foreach}
+      </section>
+      <section>
+        <h1>最新記事</h1>
+        <hr />
+        {foreach from=$recentPosts item=post}
+        <a href="/article/{$post.id}">{$post.title}</a><br>
+        {/foreach}
+      </section>
+      <section>
+        <h1>人気記事</h1>
+        <hr />
+        {foreach from=$popularPosts item=post}
+        <a href="/article/{$post.id}">{$post.title}</a><br>
+        {/foreach}
       </section>
       <section>
         <h1>アーカイブ</h1>
-        <ul>
-          <li><a href="#">アーカイブ1</a></li>
-          <li><a href="#">アーカイブ2</a></li>
-          <li><a href="#">アーカイブ3</a></li>
-          <li><a href="#">アーカイブ4</a></li>
-          <li><a href="#">アーカイブ5</a></li>
-        </ul>
+        <hr />
+        {foreach from=$postsArchive item=post}
+        <a href="/archive/{$post}">{$post}</a><br>
+        {/foreach}
       </section>
     </aside>
     {$footer} {$js} {$css}

@@ -7,10 +7,14 @@ require_once __DIR__ . '/Components/Head.php';
 require_once __DIR__ . '/Components/Footer.php';
 require_once __DIR__ . '/Components/HeaderAndNavbar.php';
 
+require_once __DIR__ . '/Components/SideBarComponents/Main.php';
+
 use App\Model\GetPostById;
 use App\View\Components\Head;
 use App\View\Components\Footer;
 use App\View\Components\HeaderAndNavbar;
+
+use App\View\Components\SideBarComponents\Main;
 
 require_once __DIR__ . "/../../modules/templateEngine/Smarty.class.php";
 
@@ -32,6 +36,10 @@ class View
         $smarty->compile_dir  = __DIR__ . '/Templates/templates_c';
         // $smarty->config_dir   = 'd:/smartysample/hello/configs/';
         // $smarty->cache_dir    = 'd:/smartysample/hello/cache/';
+
+        //side bar
+        $obj = new Main($smarty);
+        $obj->main();
 
         $obj = new GetPostById($this->id);
         $items = $obj->getPostById();

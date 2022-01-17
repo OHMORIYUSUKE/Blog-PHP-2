@@ -8,6 +8,7 @@ require_once __DIR__ . '/Components/Head.php';
 require_once __DIR__ . '/Components/Footer.php';
 require_once __DIR__ . '/Components/HeaderAndNavbar.php';
 
+require_once __DIR__ . '/Components/SideBarComponents/Main.php';
 
 require_once __DIR__ . '/utils/Pdo2array.php';
 require_once __DIR__ . '/utils/Pagenation.php';
@@ -19,6 +20,8 @@ use App\View\Components\Footer;
 use App\View\utils\Pdo2array;
 use App\View\utils\Pagenation;
 use App\View\Components\HeaderAndNavbar;
+
+use App\View\Components\SideBarComponents\Main;
 
 require_once __DIR__ . "/../../modules/templateEngine/Smarty.class.php";
 
@@ -41,6 +44,10 @@ class Top
         // $smarty->config_dir   = 'd:/smartysample/hello/configs/';
         // $smarty->cache_dir    = 'd:/smartysample/hello/cache/';
 
+        //side bar
+        $obj = new Main($smarty);
+        $obj->main();
+        //
         $obj = new GetAllPosts();
         $postCount = $obj->getAllPostsCount();
         $smarty->assign('postCount', $postCount);
