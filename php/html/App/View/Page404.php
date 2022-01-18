@@ -1,5 +1,7 @@
 <?php
 
+namespace App\View;
+
 require_once __DIR__ . '/../Model/GetPostById.php';
 require_once __DIR__ . '/../Model/db/Connect.php';
 
@@ -18,17 +20,20 @@ use App\View\Components\SideBarComponents\Main;
 
 require_once __DIR__ . "/../../modules/templateEngine/Smarty.class.php";
 
+use \Smarty;
 
-class View
+class Page404
 {
-    private int $id;
+    private string $postTitle;
+    private string $postText;
 
-    public function __construct(int $id)
+    public function __construct()
     {
-        $this->id = $id;
+        $this->postTitle = '404 NotFound';
+        $this->postText = "## URLが間違えています。\n<a href='/1'>Topに戻る</a>";
     }
 
-    public function view(): void
+    public function page404(): void
     {
         $smarty = new Smarty();
 
@@ -41,27 +46,7 @@ class View
         $obj = new Main($smarty);
         $obj->main();
 
-        $obj = new GetPostById($this->id);
-        $items = $obj->getPostById();
-        $post = $items->fetch();
-
-        if ($post === false) {
-            $postTitle = "記事がありません";
-            $postText = <<<END
-                ```
-                <p>その投稿は削除されたか、URLが間違えています。</p>
-                ∧＿∧
-                (´･ω･) みなさん、お茶が入りましたよ・・・。
-                ( つ旦O
-                と＿)＿) 旦旦旦旦旦旦旦旦旦旦旦旦旦旦旦旦旦旦旦旦
-                ```
-            END;
-        } else {
-            $postTitle = $post['title'];
-            $postText = $post['text'];
-        }
-
-        $obj = new Head($postTitle . "｜うーたんのブログ");
+        $obj = new Head($this->postTitle . "｜うーたんのブログ");
         $smarty->assign('head', $obj->utf8() . $obj->title() . $obj->cdn4md() . $obj->jquery() . $obj->tweet() . $obj->css());
 
         $obj = new HeaderAndNavbar();
@@ -70,8 +55,8 @@ class View
         $obj = new Footer();
         $smarty->assign('footer', $obj->footer());
 
-        $smarty->assign('blogTitle', $postTitle);
-        $smarty->assign('blogText', $postText);
+        $smarty->assign('blogTitle', $this->postTitle);
+        $smarty->assign('blogText', $this->postText);
 
         //js
         $js = file_get_contents(__DIR__ . '/js/md2html.js');
@@ -89,7 +74,7 @@ class View
         $css = '<style>' . $css . '</style>';
         $smarty->assign('css', $css);
 
-        $smarty->display('View.tpl');
+        $smarty->display('Page404.tpl');
         return;
     }
 }

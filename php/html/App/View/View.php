@@ -1,5 +1,7 @@
 <?php
 
+namespace App\View;
+
 require_once __DIR__ . '/../Model/GetPostById.php';
 require_once __DIR__ . '/../Model/db/Connect.php';
 
@@ -18,6 +20,7 @@ use App\View\Components\SideBarComponents\Main;
 
 require_once __DIR__ . "/../../modules/templateEngine/Smarty.class.php";
 
+use \Smarty;
 
 class View
 {
@@ -48,13 +51,11 @@ class View
         if ($post === false) {
             $postTitle = "記事がありません";
             $postText = <<<END
-                ```
-                <p>その投稿は削除されたか、URLが間違えています。</p>
+                その投稿は削除されたか、URLが間違えています。
                 ∧＿∧
                 (´･ω･) みなさん、お茶が入りましたよ・・・。
                 ( つ旦O
                 と＿)＿) 旦旦旦旦旦旦旦旦旦旦旦旦旦旦旦旦旦旦旦旦
-                ```
             END;
         } else {
             $postTitle = $post['title'];

@@ -14,13 +14,14 @@ use App\View\Components\SideBarComponents\PostsArchive;
 use App\View\Components\SideBarComponents\PostTags;
 use App\View\Components\SideBarComponents\RecentPosts;
 
-//
 require_once __DIR__ . "/../../../../modules/templateEngine/Smarty.class.php";
+
+use \Smarty;
 
 class Main
 {
-    private \Smarty $smarty;
-    public function __construct(\Smarty $smarty)
+    private Smarty $smarty;
+    public function __construct(Smarty $smarty)
     {
         $this->smarty = $smarty;
     }

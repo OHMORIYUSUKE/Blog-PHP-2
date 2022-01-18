@@ -2,9 +2,15 @@
 require_once __DIR__ . "/modules/Routing.php";
 require_once __DIR__ . '/App/View/View.php';
 require_once __DIR__ . '/App/View/Top.php';
+require_once __DIR__ . '/App/View/Page404.php';
 
 use modules\Routing;
 
+use App\View\Top;
+use App\View\View;
+use App\View\SearchWord;
+use App\View\SearchTag;
+use App\View\Page404;
 
 $obj = new Routing();
 $obj->path_route(array(
@@ -38,6 +44,7 @@ $obj->path_route(array(
     }),
     // 404 の例です。
     array('*', '404', function () {
-        echo 'ページが見つかりません。<br><a href="/1">TOPに戻る</a>';
+        $con = new Page404();
+        $con->page404();
     })
 ));

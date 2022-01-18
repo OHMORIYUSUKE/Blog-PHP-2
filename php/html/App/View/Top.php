@@ -1,5 +1,7 @@
 <?php
 
+namespace App\View;
+
 require_once __DIR__ . '/../Model/GetPosts.php';
 require_once __DIR__ . '/../Model/GetAllPosts.php';
 require_once __DIR__ . '/../Model/db/Connect.php';
@@ -25,6 +27,7 @@ use App\View\Components\SideBarComponents\Main;
 
 require_once __DIR__ . "/../../modules/templateEngine/Smarty.class.php";
 
+use \Smarty;
 
 class Top
 {

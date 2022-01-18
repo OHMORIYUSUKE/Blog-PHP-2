@@ -1,5 +1,7 @@
 <?php
 
+namespace App\View;
+
 require_once __DIR__ . '/../Model/GetPosts.php';
 require_once __DIR__ . '/../Model/GetAllPosts.php';
 require_once __DIR__ . '/../Model/db/Connect.php';
@@ -26,16 +28,16 @@ use App\View\Components\SideBarComponents\Main;
 require_once __DIR__ . "/../../modules/templateEngine/Smarty.class.php";
 
 
-class Top
+class SearchWord
 {
-    private int $id;
+    private string $word;
 
-    public function __construct(int $id)
+    public function __construct(string $word)
     {
-        $this->id = $id;
+        $this->word = $word;
     }
 
-    public function top(): void
+    public function searchWord(): void
     {
         $smarty = new Smarty();
 
@@ -94,7 +96,7 @@ class Top
         $css = '<style>' . $css . '</style>';
         $smarty->assign('css', $css);
 
-        $smarty->display('Top.tpl');
+        $smarty->display('SearchWord.tpl');
         return;
     }
 }
