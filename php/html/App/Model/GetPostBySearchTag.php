@@ -6,7 +6,7 @@ use App\Model\Connect;
 use \PDO;
 use \PDOStatement;
 
-class GetPostBySearchWord
+class GetPostBySearchTag
 {
     private string $word;
     private int $start;
@@ -18,7 +18,7 @@ class GetPostBySearchWord
         $this->postCount = 6;
     }
 
-    public function getPostBySearchWord(): PDOStatement
+    public function getPostBySearchTag(): PDOStatement
     {
         $con = new Connect();
 
@@ -28,8 +28,8 @@ class GetPostBySearchWord
         $word = $this->bMatch($word);
         $word = $this->pMatch($word);
 
-        $sql = "SELECT * FROM article WHERE title LIKE :title ORDER BY created DESC LIMIT :num, :postCount";
-        $items = $con->SQL($sql, array([':title', $word, PDO::PARAM_STR], [':num', $this->start, PDO::PARAM_INT], [':postCount', $this->postCount, PDO::PARAM_INT]));
+        $sql = "SELECT * FROM article WHERE tag LIKE :tag ORDER BY created DESC LIMIT :num, :postCount";
+        $items = $con->SQL($sql, array([':tag', $word, PDO::PARAM_STR], [':num', $this->start, PDO::PARAM_INT], [':postCount', $this->postCount, PDO::PARAM_INT]));
         return $items;
     }
 
