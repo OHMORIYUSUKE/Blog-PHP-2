@@ -3,6 +3,8 @@ require_once __DIR__ . "/modules/Routing.php";
 require_once __DIR__ . '/App/View/View.php';
 require_once __DIR__ . '/App/View/Top.php';
 require_once __DIR__ . '/App/View/Page404.php';
+require_once __DIR__ . '/App/View/SearchWord.php';
+require_once __DIR__ . '/App/View/SearchTag.php';
 
 use modules\Routing;
 
@@ -33,14 +35,18 @@ $obj->path_route(array(
         $con = new View($params['id']);
         $con->view();
     }),
-    array('GET', '/serch/:word', function ($params) {
-        print('tag/'.$params['word']);
+    array('GET', '/serch/:word/:id', function ($params) {
+        print('serch/'.$params['word'].'<br>'.'page/'.$params['id']);
+        $con = new SearchWord($params['word'], $params['id']);
+        $con->searchWord();
     }),
-    array('GET', '/archive/:date', function ($params) {
-        print('archive/'.$params['date']);
+    array('GET', '/tag/:tag/:id', function ($params) {
+        print('tag/'.$params['tag'].'<br>'.'page/'.$params['id']);
+        $con = new SearchTag($params['tag'], $params['id']);
+        $con->searchTag();
     }),
-    array('GET', '/tag/:tag', function ($params) {
-        print('tag/'.$params['tag']);
+    array('GET', '/archive/:date/:id', function ($params) {
+        print('archive/'.$params['date'].'<br>'.'page/'.$params['id']);
     }),
     // 404 の例です。
     array('*', '404', function () {

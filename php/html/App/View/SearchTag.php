@@ -32,10 +32,12 @@ use \Smarty;
 class SearchTag
 {
     private string $word;
+    private int $id;
 
-    public function __construct(string $word)
+    public function __construct(string $word, int $id)
     {
         $this->word = $word;
+        $this->id = $id;
     }
 
     public function searchTag(): void

@@ -27,14 +27,17 @@ use App\View\Components\SideBarComponents\Main;
 
 require_once __DIR__ . "/../../modules/templateEngine/Smarty.class.php";
 
+use \Smarty;
 
 class SearchWord
 {
     private string $word;
+    private int $id;
 
-    public function __construct(string $word)
+    public function __construct(string $word, int $id)
     {
         $this->word = $word;
+        $this->id = $id;
     }
 
     public function searchWord(): void
