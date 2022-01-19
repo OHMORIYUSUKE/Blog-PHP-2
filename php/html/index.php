@@ -5,6 +5,7 @@ require_once __DIR__ . '/App/View/Top.php';
 require_once __DIR__ . '/App/View/Page404.php';
 require_once __DIR__ . '/App/View/SearchWord.php';
 require_once __DIR__ . '/App/View/SearchTag.php';
+require_once __DIR__ . '/App/View/SearchArchive.php';
 
 use modules\Routing;
 
@@ -12,6 +13,7 @@ use App\View\Top;
 use App\View\View;
 use App\View\SearchWord;
 use App\View\SearchTag;
+use App\View\SearchArchive;
 use App\View\Page404;
 
 $obj = new Routing();
@@ -47,6 +49,8 @@ $obj->path_route(array(
     }),
     array('GET', '/archive/:date/:id', function ($params) {
         print('archive/'.$params['date'].'<br>'.'page/'.$params['id']);
+        $con = new SearchArchive($params['date'], $params['id']);
+        $con->searchArchive();
     }),
     // 404 の例です。
     array('*', '404', function () {
