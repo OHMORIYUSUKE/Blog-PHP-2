@@ -25,21 +25,21 @@
         <h1>最新記事</h1>
         <hr />
         {foreach from=$recentPosts item=post}
-        <a href="/article/{$post.id}">{$post.title}</a><br>
+        <a href="/article/{$post.id}">{$post.title}</a><br />
         {/foreach}
       </section>
       <section>
         <h1>人気記事</h1>
         <hr />
         {foreach from=$popularPosts item=post}
-        <a href="/article/{$post.id}">{$post.title}</a><br>
+        <a href="/article/{$post.id}">{$post.title}</a><br />
         {/foreach}
       </section>
       <section>
         <h1>アーカイブ</h1>
         <hr />
         {foreach from=$postsArchive item=post}
-        <a href="/archive/{$post}">{$post}</a><br>
+        <a href="/archive/{$post}">{$post}</a><br />
         {/foreach}
       </section>
     </aside>

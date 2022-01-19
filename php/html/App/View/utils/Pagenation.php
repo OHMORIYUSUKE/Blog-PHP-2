@@ -28,7 +28,8 @@ class Pagenation
         return $data;
     }
 
-    private function postsCount2maxPage(): int{
+    private function postsCount2maxPage(): int
+    {
         $maxPage = ceil($this->postCount / $this->postParPage);
         return $maxPage;
     }

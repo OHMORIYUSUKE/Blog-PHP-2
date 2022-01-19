@@ -22,4 +22,3 @@ class Pdo2array
         return $array;
     }
 }
-
