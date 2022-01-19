@@ -45,4 +45,11 @@ class GetPostBySearchTag
     {
         return '%' . $word;
     }
+
+    public function getPostBySearchTagCount(): int
+    {
+        $items = $this->getPostBySearchTag();
+        $count = $items->fetchColumn();
+        return $count;
+    }
 }

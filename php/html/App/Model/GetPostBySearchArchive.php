@@ -52,4 +52,11 @@ class GetPostBySearchArchive
         );
         return $data;
     }
+    
+    public function getPostBySearchArchiveCount(): int
+    {
+        $items = $this->getPostBySearchArchive();
+        $count = $items->fetchColumn();
+        return $count;
+    }
 }

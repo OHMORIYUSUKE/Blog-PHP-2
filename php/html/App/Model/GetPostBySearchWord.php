@@ -45,4 +45,11 @@ class GetPostBySearchWord
     {
         return '%' . $word;
     }
+
+    public function getPostBySearchWordCount(): int
+    {
+        $items = $this->getPostBySearchWord();
+        $count = $items->fetchColumn();
+        return $count;
+    }
 }
