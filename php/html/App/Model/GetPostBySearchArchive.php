@@ -53,9 +53,23 @@ class GetPostBySearchArchive
         return $data;
     }
     
-    public function getPostBySearchArchiveCount(): int
+    //All
+    public function getPostBySearchArchiveAll(): PDOStatement
     {
-        $items = $this->getPostBySearchArchive();
+        $con = new Connect();
+
+        $dateData = $this->getStartDateAndEndDate($this->date);
+        $startDate = $dateData['startDate'];
+        $endDate = $dateData['endDate'];
+
+        $sql = "SELECT * FROM article WHERE created BETWEEN :startDate AND :endDate ORDER BY created DESC";
+        $items = $con->SQL($sql, array([':startDate', $startDate, PDO::PARAM_STR], [':endDate', $endDate, PDO::PARAM_STR]));
+        return $items;
+    }
+
+    public function getPostBySearchArchiveAllCount(): int
+    {
+        $items = $this->getPostBySearchArchiveAll();
         $count = $items->fetchColumn();
         return $count;
     }

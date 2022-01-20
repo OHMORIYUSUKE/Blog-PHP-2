@@ -43,7 +43,6 @@ $obj->path_route(array(
         $con->searchWord();
     }),
     array('GET', '/tag/:tag/:id', function ($params) {
-        print('tag/'.$params['tag'].'<br>'.'page/'.$params['id']);
         $con = new SearchTag($params['tag'], $params['id']);
         $con->searchTag();
     }),

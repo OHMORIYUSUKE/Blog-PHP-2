@@ -20,8 +20,10 @@ class GetAllPosts
     }
     public function getAllPostsCount(): int
     {
-        $items = $this->getAllPosts();
-        $count = $items->fetchColumn();
-        return $count;
+        $con = new Connect();
+        $sql = "SELECT COUNT(*) AS cnt FROM article";
+        $items = $con->SQL($sql);
+        $count = $items->fetch();
+        return $count['cnt'];
     }
 }

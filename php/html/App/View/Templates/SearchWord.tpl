@@ -45,7 +45,7 @@
         <h1>カテゴリー</h1>
         <hr />
         {foreach from=$postTags item=post}
-        <a href="/tag/{$post}">#{$post}</a>
+        <a href="/tag/{$post}/1">#{$post}</a>
         {/foreach}
       </section>
       <section>
@@ -66,7 +66,7 @@
         <h1>アーカイブ</h1>
         <hr />
         {foreach from=$postsArchive item=post}
-        <a href="/archive/{$post}">{$post}</a><br />
+        <a href="/archive/{$post}/1">{$post}</a><br />
         {/foreach}
       </section>
     </aside>

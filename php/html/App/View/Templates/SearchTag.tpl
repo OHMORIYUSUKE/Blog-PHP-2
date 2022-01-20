@@ -9,7 +9,7 @@
       <p>記事 : {$postCount} 件</p>
       {foreach from=$postArray item=post}
       <section>
-        <a href="article/{$post.id}"><h1>{$post.title}</h1></a>
+        <a href="/article/{$post.id}"><h1>{$post.title}</h1></a>
       </section>
       {/foreach}
       <nav aria-label="Page navigation example">
@@ -45,7 +45,7 @@
         <h1>カテゴリー</h1>
         <hr />
         {foreach from=$postTags item=post}
-        <a href="/tag/{$post}">#{$post}</a>
+        <a href="/tag/{$post}/1">#{$post}</a>
         {/foreach}
       </section>
       <section>
@@ -66,7 +66,7 @@
         <h1>アーカイブ</h1>
         <hr />
         {foreach from=$postsArchive item=post}
-        <a href="/archive/{$post}">{$post}</a><br />
+        <a href="/archive/{$post}/1">{$post}</a><br />
         {/foreach}
       </section>
     </aside>

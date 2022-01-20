@@ -46,10 +46,18 @@ class GetPostBySearchTag
         return '%' . $word;
     }
 
-    public function getPostBySearchTagCount(): int
+    //All
+    public function getPostBySearchTagAllCount(): int
     {
-        $items = $this->getPostBySearchTag();
-        $count = $items->fetchColumn();
-        return $count;
+        $con = new Connect();
+
+        $word = $this->word;
+        $word = $this->url2string($word);
+        $word = $this->bMatch($word);
+        $word = $this->pMatch($word);
+        $sql = "SELECT COUNT(*) AS cnt FROM article WHERE tag LIKE :tag";
+        $items = $con->SQL($sql, array([':tag', $word, PDO::PARAM_STR]));
+        $count = $items->fetch();
+        return $count['cnt'];
     }
 }

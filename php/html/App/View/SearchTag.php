@@ -2,8 +2,7 @@
 
 namespace App\View;
 
-require_once __DIR__ . '/../Model/GetPosts.php';
-require_once __DIR__ . '/../Model/GetAllPosts.php';
+require_once __DIR__ . '/../Model/GetPostBySearchTag.php';
 require_once __DIR__ . '/../Model/db/Connect.php';
 
 require_once __DIR__ . '/Components/Head.php';
@@ -15,8 +14,7 @@ require_once __DIR__ . '/Components/SideBarComponents/Main.php';
 require_once __DIR__ . '/utils/Pdo2array.php';
 require_once __DIR__ . '/utils/Pagenation.php';
 
-use App\Model\GetPosts;
-use App\Model\GetAllPosts;
+use App\Model\GetPostBySearchTag;
 use App\View\Components\Head;
 use App\View\Components\Footer;
 use App\View\utils\Pdo2array;
@@ -53,10 +51,10 @@ class SearchTag
         $obj = new Main($smarty);
         $obj->main();
         //
-        $obj = new GetAllPosts();
-        $postCount = $obj->getAllPostsCount();
-        $smarty->assign('postCount', $postCount);
+        $obj = new GetPostBySearchTag($this->word, $this->id);
+        $postCount = $obj->getPostBySearchTagAllCount();
 
+        $smarty->assign('postCount', $postCount);
         //ページネーション
         $obj = new Pagenation($postCount, $this->id);
         $data = $obj->pagenation();
@@ -67,8 +65,8 @@ class SearchTag
         $smarty->assign('page', $page);
         $smarty->assign('maxPage', $maxPage);
 
-        $obj = new GetPosts($start);
-        $posts = $obj->getPosts();
+        $obj = new GetPostBySearchTag($this->word, $start);
+        $posts = $obj->getPostBySearchTag();
 
         $obj = new Pdo2array($posts);
         $postArray = $obj->pdo2array();
