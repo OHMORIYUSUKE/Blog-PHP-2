@@ -37,8 +37,8 @@ $obj->path_route(array(
         $con = new View($params['id']);
         $con->view();
     }),
-    array('GET', '/serch/:word/:id', function ($params) {
-        print('serch/'.$params['word'].'<br>'.'page/'.$params['id']);
+    array('GET', '/search/:word/:id', function ($params) {
+        print('search/'.$params['word'].'<br>'.'page/'.$params['id']);
         $con = new SearchWord($params['word'], $params['id']);
         $con->searchWord();
     }),
