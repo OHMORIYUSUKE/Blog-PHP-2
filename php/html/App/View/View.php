@@ -2,15 +2,6 @@
 
 namespace App\View;
 
-require_once __DIR__ . '/../Model/GetPostById.php';
-require_once __DIR__ . '/../Model/db/Connect.php';
-
-require_once __DIR__ . '/Components/Head.php';
-require_once __DIR__ . '/Components/Footer.php';
-require_once __DIR__ . '/Components/HeaderAndNavbar.php';
-
-require_once __DIR__ . '/Components/SideBarComponents/Main.php';
-
 use App\Model\GetPostById;
 use App\View\Components\Head;
 use App\View\Components\Footer;

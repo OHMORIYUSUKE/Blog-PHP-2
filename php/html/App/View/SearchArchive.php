@@ -2,19 +2,6 @@
 
 namespace App\View;
 
-require_once __DIR__ . '/../Model/GetPosts.php';
-require_once __DIR__ . '/../Model/GetAllPosts.php';
-require_once __DIR__ . '/../Model/db/Connect.php';
-
-require_once __DIR__ . '/Components/Head.php';
-require_once __DIR__ . '/Components/Footer.php';
-require_once __DIR__ . '/Components/HeaderAndNavbar.php';
-
-require_once __DIR__ . '/Components/SideBarComponents/Main.php';
-
-require_once __DIR__ . '/utils/Pdo2array.php';
-require_once __DIR__ . '/utils/Pagenation.php';
-
 use App\Model\GetPosts;
 use App\Model\GetAllPosts;
 use App\View\Components\Head;
@@ -24,8 +11,6 @@ use App\View\utils\Pagenation;
 use App\View\Components\HeaderAndNavbar;
 
 use App\View\Components\SideBarComponents\Main;
-
-require_once __DIR__ . "/../../modules/templateEngine/Smarty.class.php";
 
 use \Smarty;
 

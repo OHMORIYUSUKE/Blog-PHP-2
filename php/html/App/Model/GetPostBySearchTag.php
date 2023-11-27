@@ -10,12 +10,13 @@ class GetPostBySearchTag
 {
     private string $word;
     private int $start;
+    private int $postCount;
 
     public function __construct(string $word, int $start)
     {
         $this->word = $word;
-        $this->start = $start;
         $this->postCount = 6;
+        $this->start = $start;
     }
 
     public function getPostBySearchTag(): PDOStatement

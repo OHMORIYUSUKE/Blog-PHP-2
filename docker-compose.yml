@@ -12,6 +12,7 @@ services:
 
   mysql:
     build: ./mysql
+    platform: linux/arm64
     volumes:
       - ./mysql/save_data:/var/lib/mysql #データの永続化
     environment:

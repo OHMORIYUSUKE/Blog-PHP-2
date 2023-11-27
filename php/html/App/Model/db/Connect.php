@@ -8,13 +8,19 @@ use \Exception;
 
 class Connect
 {
+    private string $DB_NAME;
+    private string $HOST;
+    private string $UTF;
+    private string $USER;
+    private string $PASS;
+
     public function __construct()
     {
         $this->DB_NAME = "blog";
         $this->HOST = "mysql";
         $this->UTF = "utf8";
-        $this->USER = "root";
-        $this->PASS = "root";
+        $this->USER = "test";
+        $this->PASS = "test";
     }
     //データベースに接続する関数
     public function pdo(): PDO
@@ -26,7 +32,7 @@ class Connect
         try {
             $pdo = new PDO($dsn, $user, $pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . $this->UTF));
         } catch (Exception $e) {
-            echo 'error' . $e->getMesseage;
+            echo 'error' . $e->getMessage();
             die();
         }
         //エラーを表示してくれる。
@@ -49,6 +55,8 @@ class Connect
             $stmt->bindValue($param[$i][0], $param[$i][1], $param[$i][2]);
         }
         $stmt->execute();
+        // $stmt->debugDumpParams();
+        // exit();
         return $stmt;
     }
     private function doNoneParamSQL(PDOStatement $stmt): PDOStatement

@@ -1,5 +1,7 @@
 <?php
+
 namespace App\View\Components;
+
 class HeaderAndNavbar
 {
     function __construct()
@@ -10,7 +12,7 @@ class HeaderAndNavbar
     {
         $tagHeader = $this->header();
         $tagNavbar = $this->navbar();
-        $tag = $tagHeader ."\n".$tagNavbar;
+        $tag = $tagHeader . "\n" . $tagNavbar;
         return $tag;
     }
     private function header(): string
@@ -29,10 +31,6 @@ class HeaderAndNavbar
             <h1>グローバルナビゲーション</h1>
             <ul>
             <li><a href="/1">🏡 HOME</a></li>
-            <li><a href="/search/null/1">🔍 Search</a></li>
-            <li><a href="#">🧑 ABOUT</a></li>
-            <li><a href="#">📰 Feed</a></li>
-            <li><a href="#">📝 Portfolio</a></li>
             </ul>
             </nav>
         END;
